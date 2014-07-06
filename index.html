@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>ParaNoidz Redis Manager For Dartium</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+  <!--
+  <link rel="stylesheet" href="styles.css">
+  -->
+  
+  <script src="packages/web_components/platform.js"></script>
+  <script src="packages/web_components/dart_support.js"></script>
+  
+  <link rel="import" href="packages/paper_elements/paper_button.html">
+  <link rel="import" href="packages/core_elements/core_drawer_panel.html">
+  
+  <style>
+    body {
+      font-family: sans-serif;
+      color: #FFF;
+      height: 100%;
+    }
+    
+    [drawer] {
+      background-color: #B99588;
+      border-right: 1px solid #ccc;
+    }
+    
+    [main] {
+      height: 100%;
+      background-color: #4F7DC9;
+    }
+    
+    button {
+      width: 160px;
+      height: 40px;
+      font-size: 16px;
+      margin: 8px;
+    }
+    
+    core-drawer-panel[narrow] button {
+      display: inline-block
+    }
+  </style>
+</head>
+
+<body unresovled fullbleed>
+  <core-drawer-panel>
+  
+    <div drawer>
+      Drawer Panel
+      <paper-button label='OK'>OK</paper-button>
+    </div>
+      
+    <div main>
+      Main Panel
+      <button>toggle drawer</button>
+    </div>
+    
+  </core-drawer-panel>
+  
+  <script type="application/dart" src="main.dart"></script>
+  <script src="packages/browser/dart.js"></script>
+</body>
+</html>

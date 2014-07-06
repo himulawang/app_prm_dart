@@ -1,0 +1,8 @@
+name: app_prm_dart
+description: A sample web application
+dependencies:
+  browser: any
+  chrome: any
+  logging: any
+  paper_elements: any
+  polymer: any
