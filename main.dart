@@ -9,6 +9,9 @@ export 'package:polymer/init.dart' show main;
 
 main() {
   /*
+  querySelector('#btn-drawer-toggle').onClick.listen((Event e) {
+    querySelector('#draw-panel').setAttribute('selected', 'drawer');
+  });
   var element = new DivElement();
   element.text = "Hello, World!";
   document.body.children.add(element);

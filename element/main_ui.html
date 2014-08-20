@@ -1,0 +1,80 @@
+<link rel="import" href="../packages/polymer/polymer.html">
+
+<link rel="import" href="../packages/core_elements/core_drawer_panel.html">
+<link rel="import" href="../packages/core_elements/core_menu.html">
+<link rel="import" href="../packages/core_elements/core_header_panel.html">
+
+<link rel="import" href="../packages/paper_elements/paper_button.html">
+<link rel="import" href="../packages/paper_elements/paper_item.html">
+
+<link rel="import" href="new_node.html">
+
+<polymer-element name="main-ui" noscript>
+
+  <template>
+
+    <style>
+
+      [drawer] {
+        border-right: 1px solid #ccc;
+        background-color: rgb(238, 238, 238);
+      }
+
+      [main] {
+        height: 100%;
+        background-color: #FFF;
+      }
+
+      button {
+        width: 160px;
+        height: 40px;
+        font-size: 16px;
+        margin: 8px;
+      }
+
+      core-drawer-panel[narrow] button {
+        display: inline-block
+      }
+
+      core-header-panel {
+        width: 250px;
+        height: 300px;
+        margin: 5px;
+      }
+
+      .core-header {
+        height: 60px;
+        line-height: 60px;
+        font-size: 18px;
+        padding: 0 10px;
+        background-color: #4F7DC9;
+        color: #FFF;
+        transition: height 0.2s;
+      }
+
+    </style>
+
+    <core-drawer-panel id="draw-panel">
+
+      <div drawer>
+        <core-header-panel>
+          <div class="core-header">PRM</div>
+          <div class="content">
+            <core-menu>
+              <paper-item label="New Node" onclick="switchPanel('newNode');"></paper-item>
+              <paper-item label="New Batch"></paper-item>
+            </core-menu>
+          </div>
+        </core-header-panel>
+      </div>
+
+      <div main>
+        <new-node></new-node>
+        <button class="btn-drawer-toggle" id="btn-drawer-toggle">toggle drawer</button>
+      </div>
+
+    </core-drawer-panel>
+
+  </template>
+
+</polymer-element>

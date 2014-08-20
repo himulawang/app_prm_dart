@@ -1,0 +1,75 @@
+<link rel="import" href="../packages/polymer/polymer.html">
+
+<link rel="import" href="../packages/core_elements/core_header_panel.html">
+<link rel="import" href="../packages/core_elements/core_icons.html">
+
+<link rel="import" href="../packages/paper_elements/paper_input.html">
+<link rel="import" href="../packages/paper_elements/paper_fab.html">
+
+<polymer-element name="new-node" noscript>
+
+  <template>
+
+    <style shim-shadowdom>
+
+      core-header-panel {
+        width: 100%;
+        max-width: 340px;
+        height: 600px;
+        margin: 5px;
+      }
+
+      core-header-panel[mode=cover]::shadow #mainContainer {
+        left: 70px;
+      }
+
+      .core-header {
+        height: 60px;
+        line-height: 60px;
+        font-size: 18px;
+        padding: 0 10px;
+        background-color: #4F7DC9;
+        color: #FFF;
+        transition: height 0.2s;
+      }
+
+      .content {
+        margin: 15px;
+      }
+
+      paper-fab {
+        color: #FFF;
+        margin-top: 15px;
+        margin-right: 2em;
+        position: absolute;
+        left: 250px;
+      }
+
+    </style>
+
+    <core-header-panel>
+      <div class="core-header">New Node</div>
+      <div class="content">
+        <div>
+          <paper-input floatingLabel label="Name"></paper-input>
+        </div>
+        <div>
+          <paper-input floatingLabel label="Host"></paper-input>
+        </div>
+        <div>
+          <paper-input floatingLabel label="Port" type="number"></paper-input>
+        </div>
+        <div>
+          <paper-input floatingLabel label="Password" type="password"></paper-input>
+        </div>
+        <paper-fab icon="done"></paper-fab>
+      </div>
+    </core-header-panel>
+
+  </template>
+
+  <!--
+  <script type="application/dart" src="new_node.dart"></script>
+  -->
+
+</polymer-element>
