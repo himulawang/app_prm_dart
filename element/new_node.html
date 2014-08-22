@@ -2,25 +2,24 @@
 
 <link rel="import" href="../packages/core_elements/core_header_panel.html">
 <link rel="import" href="../packages/core_elements/core_icons.html">
+<link rel="import" href="../packages/core_elements/core_animated_pages.html">
+<link rel="import" href="../packages/core_elements/src/core-animated-pages/transitions/slide-from-right.html">
 
-<link rel="import" href="../packages/paper_elements/paper_input.html">
-<link rel="import" href="../packages/paper_elements/paper_fab.html">
+<link rel="import" href="../packages/paper_elements/paper_toggle_button.html">
 
-<polymer-element name="new-node" noscript>
+<link rel="import" href="new_single.html">
+<link rel="import" href="new_multiple.html">
+
+<polymer-element name="new-node">
 
   <template>
 
-    <style shim-shadowdom>
+    <style>
 
       core-header-panel {
-        width: 100%;
         max-width: 340px;
-        height: 600px;
+        height: 800px;
         margin: 5px;
-      }
-
-      core-header-panel[mode=cover]::shadow #mainContainer {
-        left: 70px;
       }
 
       .core-header {
@@ -37,39 +36,70 @@
         margin: 15px;
       }
 
-      paper-fab {
-        color: #FFF;
-        margin-top: 15px;
-        margin-right: 2em;
-        position: absolute;
-        left: 250px;
+      .container {
+        margin-top: 30px;
+        margin-bottom: 20px;
       }
 
     </style>
 
     <core-header-panel>
+
       <div class="core-header">New Node</div>
+
       <div class="content">
-        <div>
-          <paper-input floatingLabel label="Name"></paper-input>
+
+        <div center horizontal layout class="container">
+
+          <div flex>Batch</div>
+          <paper-toggle-button checked="{{isBatch}}"></paper-toggle-button>
+
         </div>
-        <div>
-          <paper-input floatingLabel label="Host"></paper-input>
-        </div>
-        <div>
-          <paper-input floatingLabel label="Port" type="number"></paper-input>
-        </div>
-        <div>
-          <paper-input floatingLabel label="Password" type="password"></paper-input>
-        </div>
-        <paper-fab icon="done"></paper-fab>
+
+        <core-animated-pages  transitions="slide-from-right" selected="1" id="switcher">
+
+          <section>
+
+              <new-single></new-single>
+
+          </section>
+
+          <section>
+
+              <new-multiple></new-multiple>
+
+          </section>
+
+        </core-animated-pages>
+
       </div>
+
     </core-header-panel>
 
   </template>
 
-  <!--
-  <script type="application/dart" src="new_node.dart"></script>
-  -->
+  <script>
+
+    Polymer('new-node', {
+
+      isBatchChanged: false,
+
+      ready: function() {
+      },
+
+      isBatchChanged: function(oldValue, newValue) {
+        var panel = this.$.switcher;
+        if (panel.selected == 0) {
+          panel.selected = 1;
+        } else {
+          panel.selected = 0;
+        }
+      }
+
+    });
+
+  </script>
 
 </polymer-element>
+
+<script type="application/dart" src="new_node.dart"></script>

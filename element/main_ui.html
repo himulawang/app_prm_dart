@@ -8,8 +8,9 @@
 <link rel="import" href="../packages/paper_elements/paper_item.html">
 
 <link rel="import" href="new_node.html">
+<link rel="import" href="manage_node.html">
 
-<polymer-element name="main-ui" noscript>
+<polymer-element name="main-ui">
 
   <template>
 
@@ -61,20 +62,33 @@
           <div class="core-header">PRM</div>
           <div class="content">
             <core-menu>
-              <paper-item label="New Node" onclick="switchPanel('newNode');"></paper-item>
-              <paper-item label="New Batch"></paper-item>
+              <paper-item label="New Node"></paper-item>
+              <paper-item label="Nodes"></paper-item>
             </core-menu>
           </div>
         </core-header-panel>
       </div>
 
       <div main>
+        <manage-node></manage-node>
+        <!--
         <new-node></new-node>
         <button class="btn-drawer-toggle" id="btn-drawer-toggle">toggle drawer</button>
+        -->
       </div>
 
     </core-drawer-panel>
 
   </template>
 
+  <script>
+    Polymer('main-ui', {
+      publish: {
+
+      }
+    });
+  </script>
+
 </polymer-element>
+
+<script type="application/dart" src="main_ui.dart"></script>

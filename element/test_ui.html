@@ -1,0 +1,26 @@
+<link rel="import" href="../packages/polymer/polymer.html">
+<link rel="import" href="../packages/paper_elements/paper_button.html">
+
+<polymer-element name="test-ui">
+  <template>
+    <style>
+      #line {
+        color: red;
+      }
+    </style>
+
+    <div id="line">
+      name
+    </div>
+    <div>
+      <paper-button label="OK"></paper-button>
+    </div>
+  </template>
+
+  <script>
+    Polymer('test-ui', {});
+  </script>
+
+</polymer-element>
+
+<script type="application/dart" src="test_ui.dart"></script>

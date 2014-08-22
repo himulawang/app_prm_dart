@@ -2,7 +2,7 @@ import 'dart:html';
 import 'package:polymer/polymer.dart';
 import 'package:paper_elements/paper_button.dart';
 
-import 'i_redis/i_redis.dart';
+//import 'i_redis/i_redis.dart';
 
 import 'dart:js' show JsObject;
 export 'package:polymer/init.dart' show main;

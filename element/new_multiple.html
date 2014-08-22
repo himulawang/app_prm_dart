@@ -1,0 +1,57 @@
+<link ref="import" href="../packages/polymer/polymer.html">
+<link rel="import" href="../packages/paper_elements/paper_input.html">
+<link rel="import" href="../packages/paper_elements/paper_fab.html">
+
+<polymer-element name="new-multiple">
+
+  <template>
+
+    <style>
+
+      paper-fab {
+        color: #FFF;
+        margin-top: 15px;
+        margin-right: 2em;
+        position: absolute;
+        left: 250px;
+      }
+
+    </style>
+
+    <div id="content">
+
+      <div>
+        <paper-input floatingLabel label="Name"></paper-input>
+      </div>
+
+      <div>
+        <paper-input floatingLabel label="Start Host"></paper-input>
+      </div>
+
+      <div>
+        <paper-input floatingLabel label="End Host"></paper-input>
+      </div>
+
+      <div>
+        <paper-input floatingLabel label="Start Port" type="number"></paper-input>
+      </div>
+
+      <div>
+        <paper-input floatingLabel label="End Port" type="number"></paper-input>
+      </div>
+
+      <div>
+        <paper-input floatingLabel label="Password" type="password"></paper-input>
+      </div>
+
+      <paper-fab icon="done"></paper-fab>
+
+    </div>
+
+  </template>
+
+  <script>
+    Polymer('new-multiple', {});
+  </script>
+
+</polymer-element>
