@@ -56,19 +56,10 @@
 
         </div>
 
-        <core-animated-pages  transitions="slide-from-right" selected="1" id="switcher">
+        <core-animated-pages transitions="slide-from-right" selected="0" id="pages">
 
-          <section>
-
-              <new-single></new-single>
-
-          </section>
-
-          <section>
-
-              <new-multiple></new-multiple>
-
-          </section>
+          <section><new-single></new-single></section>
+          <section><new-multiple></new-multiple></section>
 
         </core-animated-pages>
 
@@ -78,28 +69,33 @@
 
   </template>
 
-  <script>
+  <script type="application/dart">
+    import 'package:polymer/polymer.dart';
+    import 'package:core_elements/core_animated_pages.dart';
 
-    Polymer('new-node', {
+    @CustomTag('new-node')
+    class NewNodeElement extends PolymerElement {
+      @observable bool isBatch = false;
 
-      isBatchChanged: false,
+      CoreAnimatedPages pages;
 
-      ready: function() {
-      },
+      NewNodeElement.created(): super.created();
 
-      isBatchChanged: function(oldValue, newValue) {
-        var panel = this.$.switcher;
-        if (panel.selected == 0) {
-          panel.selected = 1;
-        } else {
-          panel.selected = 0;
-        }
+      @override
+      void attached() {
+        super.attached();
+        pages = $['pages'];
       }
 
-    });
-
+      void isBatchChanged(bool oldV, bool newV) {
+        if (newV) {
+          pages.selected = 1;
+        } else {
+          pages.selected = 0;
+        }
+      }
+    }
   </script>
 
 </polymer-element>
 
-<script type="application/dart" src="new_node.dart"></script>

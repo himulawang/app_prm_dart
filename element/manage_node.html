@@ -40,7 +40,6 @@
               <div>{{node.name}}</div>
             </template>
 
-
           </section>
 
         </core-animated-pages>
@@ -51,32 +50,6 @@
 
   </template>
 
-  <script>
-    Polymer('manage-node', {
-
-      nodes: {},
-
-      ready: function() {
-        this.$.nodes.model = {
-          nodes: [
-            {
-              name: 'localhost:6379',
-              host: 'localhost',
-              port: 6379,
-              password: null
-            },
-            {
-              name: 'localhost:6380',
-              host: 'localhost',
-              port: 6380,
-              password: null
-            }
-          ]
-        };
-
-      }
-
-    });
-  </script>
+  <script type="application/dart" src="manage_node.dart"></script>
 
 </polymer-element>

@@ -62,17 +62,17 @@
           <div class="core-header">PRM</div>
           <div class="content">
             <core-menu>
-              <paper-item label="New Node"></paper-item>
-              <paper-item label="Nodes"></paper-item>
+              <paper-item label="New Node" on-click="{{newNode}}"></paper-item>
+              <paper-item label="Manage Node" on-click="{{manageNode}}"></paper-item>
             </core-menu>
           </div>
         </core-header-panel>
       </div>
 
-      <div main>
-        <manage-node></manage-node>
-        <!--
+      <div main id="main">
         <new-node></new-node>
+        <!--
+        <manage-node></manage-node>
         <button class="btn-drawer-toggle" id="btn-drawer-toggle">toggle drawer</button>
         -->
       </div>
@@ -81,14 +81,38 @@
 
   </template>
 
-  <script>
-    Polymer('main-ui', {
-      publish: {
+  <script type="application/dart">
+    import 'dart:html';
+    import 'package:polymer/polymer.dart';
+    import 'manage_node.dart';
 
+    @CustomTag('main-ui')
+    class MainUIElement extends PolymerElement {
+      MainUIElement.created(): super.created();
+
+      DivElement main;
+
+      @override
+      void attached() {
+        super.attached();
+        main = $['main'];
       }
-    });
+
+      void newNode() {
+        main.setInnerHtml('<new-node></new-node>');
+      }
+
+      void manageNode() {
+        Element manageNode = new Element.tag('manage-node');
+
+        main.children
+          ..clear()
+          ..add(manageNode);
+
+        manageNode.refresh();
+      }
+    }
   </script>
 
 </polymer-element>
 
-<script type="application/dart" src="main_ui.dart"></script>

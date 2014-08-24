@@ -21,30 +21,67 @@
     <div id="content">
 
       <div>
-        <paper-input floatingLabel label="Name"></paper-input>
+        <paper-input floatingLabel label="Name" id="name"></paper-input>
       </div>
 
       <div>
-        <paper-input floatingLabel label="Host"></paper-input>
+        <paper-input floatingLabel label="Host" id="host"></paper-input>
       </div>
 
       <div>
-        <paper-input floatingLabel label="Port" type="number"></paper-input>
+        <paper-input floatingLabel label="Port" type="number" id="port"></paper-input>
       </div>
 
       <div>
-        <paper-input floatingLabel label="Password" type="password"></paper-input>
+        <paper-input floatingLabel label="Password" type="password" id="password"></paper-input>
       </div>
 
-      <paper-fab icon="done"></paper-fab>
+      <paper-fab icon="done" on-click="{{submit}}"></paper-fab>
 
     </div>
 
   </template>
 
-  <script>
-    Polymer('new-single', {});
-  </script>
+  <script type="application/dart">
+    import "dart:async";
+    import "package:polymer/polymer.dart";
+    import "../lib_app_prm_dart.dart";
 
+    @CustomTag('new-single')
+    class NewSingleElement extends PolymerElement {
+      NewSingleElement.created(): super.created();
+
+      void submit() {
+        String name = $['name'].value;
+        String host = $['host'].value;
+        int port = $['port'].value;
+        String password = $['password'].value;
+
+        int newPK;
+
+        // make new pk
+        NodePKIndexedDBStore.get()
+        .then((NodePK pk) {
+          newPK = pk.incr();
+          return NodePKIndexedDBStore.set(pk);
+        })
+        // get list
+        .then((_) => NodeListIndexedDBStore.get(0))
+        .then((NodeList list) {
+          Node node = new Node();
+          node..groupId = 0
+            ..id = newPK
+            ..name = name
+            ..host = host
+            ..port = port
+            ..password = password;
+
+          list.add(node);
+
+          return NodeListIndexedDBStore.set(list);
+        });
+      }
+    }
+  </script>
 
 </polymer-element>
