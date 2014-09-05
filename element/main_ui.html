@@ -9,8 +9,9 @@
 
 <link rel="import" href="new_node.html">
 <link rel="import" href="manage_node.html">
+<link rel="import" href="active_session.html">
 
-<polymer-element name="main-ui">
+<polymer-element name="main-ui" attributes="selected" selected="{{selected}}">
 
   <template>
 
@@ -64,18 +65,13 @@
             <core-menu>
               <paper-item label="New Node" on-click="{{newNode}}"></paper-item>
               <paper-item label="Manage Node" on-click="{{manageNode}}"></paper-item>
+              <paper-item label="Active Session" on-click="{{activeSession}}"></paper-item>
             </core-menu>
           </div>
         </core-header-panel>
       </div>
 
-      <div main id="main">
-        <new-node></new-node>
-        <!--
-        <manage-node></manage-node>
-        <button class="btn-drawer-toggle" id="btn-drawer-toggle">toggle drawer</button>
-        -->
-      </div>
+      <div main id="main"></div>
 
     </core-drawer-panel>
 
@@ -88,6 +84,8 @@
 
     @CustomTag('main-ui')
     class MainUIElement extends PolymerElement {
+      @observable String selected;
+
       MainUIElement.created(): super.created();
 
       DivElement main;
@@ -95,22 +93,42 @@
       @override
       void attached() {
         super.attached();
+
         main = $['main'];
+        newNode();
       }
 
-      void newNode() {
-        main.setInnerHtml('<new-node></new-node>');
+      void selectedChanged(String oldV, String newV) {
+        if (newV == 'new-node') {
+          Element newNode = new Element.tag('new-node');
+
+          main.children
+            ..clear()
+            ..add(newNode);
+          return;
+        } else if (newV == 'manage-node') {
+          Element manageNode = new Element.tag('manage-node');
+
+          main.children
+            ..clear()
+            ..add(manageNode);
+
+          manageNode.refresh();
+          return;
+        } else if (newV == 'active-session') {
+          Element activeSession = new Element.tag('active-session');
+
+          main.children
+            ..clear()
+            ..add(activeSession);
+
+          return;
+        }
       }
 
-      void manageNode() {
-        Element manageNode = new Element.tag('manage-node');
-
-        main.children
-          ..clear()
-          ..add(manageNode);
-
-        manageNode.refresh();
-      }
+      void newNode() => selected = 'new-node';
+      void manageNode() => selected = 'manage-node';
+      void activeSession() => selected = 'active-session';
     }
   </script>
 

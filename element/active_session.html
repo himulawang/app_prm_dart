@@ -1,0 +1,53 @@
+<link type="import" href="../packages/polymer/polymer.html">
+
+<link rel="import" href="../packages/core_elements/core_header_panel.html">
+
+<polymer-element name="active-session">
+  <template>
+
+    <style>
+
+      core-header-panel {
+        max-width: 340px;
+        height: 800px;
+        margin: 5px;
+      }
+
+      .core-header {
+        height: 60px;
+        line-height: 60px;
+        font-size: 18px;
+        padding: 0 10px;
+        background-color: #4F7DC9;
+        color: #FFF;
+        transition: height 0.2s;
+      }
+
+    </style>
+
+    <core-header-panel>
+
+      <div class="core-header">Active Session</div>
+
+      <div class="content">
+
+        <section>
+        </section>
+
+      </div>
+
+    </core-header-panel>
+
+
+  </template>
+
+  <script type="application/dart">
+    import "package:polymer/polymer.dart";
+
+    @CustomTag('active-session')
+    class ActiveSessionElement extends PolymerElement {
+      ActiveSessionElement.created(): super.created();
+    }
+  </script>
+
+</polymer-element>

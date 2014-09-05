@@ -1,6 +1,7 @@
 <link ref="import" href="../packages/polymer/polymer.html">
 <link rel="import" href="../packages/paper_elements/paper_input.html">
 <link rel="import" href="../packages/paper_elements/paper_fab.html">
+<link rel="import" href="../packages/paper_elements/paper_toast.html">
 
 <polymer-element name="new-single">
 
@@ -38,6 +39,8 @@
 
       <paper-fab icon="done" on-click="{{submit}}"></paper-fab>
 
+      <paper-toast id="toast" text=""></paper-toast>
+
     </div>
 
   </template>
@@ -45,17 +48,33 @@
   <script type="application/dart">
     import "dart:async";
     import "package:polymer/polymer.dart";
+    import "package:paper_elements/paper_input.dart";
     import "../lib_app_prm_dart.dart";
 
     @CustomTag('new-single')
     class NewSingleElement extends PolymerElement {
       NewSingleElement.created(): super.created();
 
+      PaperInput $name;
+      PaperInput $host;
+      PaperInput $port;
+      PaperInput $password;
+
+      @override
+      void attached() {
+        super.attached();
+
+        $name = $['name'];
+        $host = $['host'];
+        $port = $['port'];
+        $password = $['password'];
+      }
+
       void submit() {
-        String name = $['name'].value;
-        String host = $['host'].value;
-        int port = $['port'].value;
-        String password = $['password'].value;
+        String name = $name.value;
+        String host = $host.value;
+        int port = $port.value;
+        String password = $password.value;
 
         int newPK;
 
@@ -79,7 +98,15 @@
           list.add(node);
 
           return NodeListIndexedDBStore.set(list);
-        });
+        })
+        .then((_) {
+          $['toast']..setAttribute('text', 'Node created.')..show();
+          $name.value = '';
+          $host.value = '';
+          $port.value = '';
+          $password.value = '';
+        })
+        ;
       }
     }
   </script>

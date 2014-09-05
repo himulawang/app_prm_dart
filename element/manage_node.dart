@@ -1,3 +1,4 @@
+import "dart:html";
 import "package:polymer/polymer.dart";
 import "../lib_app_prm_dart.dart";
 
@@ -17,4 +18,6 @@ class ManageNodeElement extends PolymerElement {
       nodes = tmp;
     });
   }
+
+  void toNewNode() => querySelector('#main-ui').newNode();
 }

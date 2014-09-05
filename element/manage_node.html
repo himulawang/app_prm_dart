@@ -2,6 +2,9 @@
 
 <link rel="import" href="../packages/core_elements/core_header_panel.html">
 
+<link rel="import" href="../packages/paper_elements/paper_checkbox.html">
+<link rel="import" href="../packages/paper_elements/paper_button.html">
+
 <polymer-element name="manage-node">
 
   <template>
@@ -24,6 +27,34 @@
         transition: height 0.2s;
       }
 
+      paper-checkbox {
+        padding: 20px;
+      }
+
+      paper-button {
+        margin: 1em;
+        width: 8em;
+      }
+
+      paper-button.colored {
+        color: #4285f4;
+      }
+
+      paper-button[raisedButton].colored {
+        background: #4285f4;
+        color: #fff;
+      }
+
+      paper-button[raisedButton].colored #ripple,
+      paper-button[raisedButton].colored::shadow #ripple {
+        color: #2a56c6;
+      }
+
+      paper-button[raisedButton].colored #focusBg,
+      paper-button[raisedButton].colored::shadow #focusBg {
+        background: #3367d6;
+      }
+
     </style>
 
     <core-header-panel>
@@ -32,13 +63,30 @@
 
       <div class="content">
 
-        <core-animated-pages  transitions="slide-from-right" selected="0" id="switcher">
+        <core-animated-pages transitions="slide-from-right" selected="0" id="switcher">
 
           <section>
 
+            <template if="{{nodes.length == 0}}">Create Node First.</template>
+
             <template id="nodes" repeat="{{ node in nodes }}">
-              <div>{{node.name}}</div>
+
+              <div horizontal layout>
+
+                <paper-checkbox class="node-checkbox" value="{{node.id}}"></paper-checkbox>
+                <div vertical layout>
+                  <h4>{{node.name}}</h4>
+                  <div>{{node.host}}:{{node.port}}</div>
+                </div>
+
+              </div>
+
             </template>
+
+            <div>
+              <paper-button label="Edit"></paper-button>
+              <paper-button raisedButton label="Connect" class="colored" on-click="{{toNewNode}}"></paper-button>
+            </div>
 
           </section>
 
